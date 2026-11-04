@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1360</width>
+    <height>780</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1100</width>
+    <height>680</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>거리 벡터 라우팅 시각화 시뮬레이터</string>
+  </property>
+  <widget class="QWidget" name="mainwindow">
+   <layout class="QVBoxLayout" name="mainLayout" stretch="0,0,1">
+    <property name="spacing">
+     <number>8</number>
+    </property>
+    <property name="leftMargin">
+     <number>12</number>
+    </property>
+    <property name="topMargin">
+     <number>10</number>
+    </property>
+    <property name="rightMargin">
+     <number>12</number>
+    </property>
+    <property name="bottomMargin">
+     <number>12</number>
+    </property>
+    <item>
+     <widget class="QFrame" name="ctrlFrame">
+      <property name="styleSheet">
+       <string notr="true">QPushButton { font-size: 15px; padding: 8px 14px; }
+QPushButton#next { font-weight: bold; }</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Shape::StyledPanel</enum>
+      </property>
+      <layout class="QHBoxLayout" name="ctrlLayout">
+       <item>
+        <widget class="QPushButton" name="next">
+         <property name="text">
+          <string>다음 라운드 ▶</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="comp">
+         <property name="text">
+          <string>초기·현재 비교</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="spacer1">
+         <property name="orientation">
+          <enum>Qt::Orientation::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <spacer name="spacer2">
+         <property name="orientation">
+          <enum>Qt::Orientation::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="setf">
+         <property name="text">
+          <string>링크 장애 설정</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="restoref">
+         <property name="text">
+          <string>링크 장애 복구</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="spacer3">
+         <property name="orientation">
+          <enum>Qt::Orientation::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="help">
+         <property name="text">
+          <string>실습 가이드</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="th">
+         <property name="text">
+          <string>이론 설명</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="guideLabel">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>112</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>112</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+    background-color: #eef4fa;
+    border: 2px solid #8fb0d8;
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-size: 17px;
+    font-weight: bold;
+    color: #1a365d;
+}</string>
+      </property>
+      <property name="text">
+       <string>[1단계 안내] 위쪽 [파일] 메뉴를 눌러 예제(3/4/7 노드)를 불러오거나, [직접 구상 - 노드 추가]로 직접 네트워크를 만들어 보세요.</string>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="bodyLayout" stretch="5,3">
+      <property name="spacing">
+       <number>12</number>
+      </property>
+      <item>
+       <widget class="QGraphicsView" name="show">
+        <property name="minimumSize">
+         <size>
+          <width>500</width>
+          <height>340</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QGraphicsView { background-color: white; border: 1px solid #999999; }</string>
+        </property>
+        <property name="verticalScrollBarPolicy">
+         <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+        </property>
+        <property name="horizontalScrollBarPolicy">
+         <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="rightLayout" stretch="0,3,0,2">
+        <item>
+         <widget class="QLabel" name="title2">
+          <property name="styleSheet">
+           <string notr="true">QLabel { font-size: 16px; font-weight: bold; }</string>
+          </property>
+          <property name="text">
+           <string>라우팅 테이블 (행: 출발 / 열: 도착)</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="table">
+          <property name="styleSheet">
+           <string notr="true">QTableWidget { font-size: 16px; } QHeaderView::section { font-size: 16px; font-weight: bold; }</string>
+          </property>
+          <property name="editTriggers">
+           <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="detailTitle">
+          <property name="styleSheet">
+           <string notr="true">QLabel { font-size: 16px; font-weight: bold; }</string>
+          </property>
+          <property name="text">
+           <string>계산 과정 (왜 이 값이 됐나요?)</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPlainTextEdit" name="detail">
+          <property name="styleSheet">
+           <string notr="true">QPlainTextEdit { font-size: 16px; }</string>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+          <property name="plainText">
+           <string>[다음 라운드 ▶]를 누르면, 이곳에 값이 바뀐 이유(계산 과정)가 한 줄씩 나와요.</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1360</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="fileMenu">
+    <property name="title">
+     <string>파일(&amp;F)</string>
+    </property>
+    <widget class="QMenu" name="exampleMenu">
+     <property name="title">
+      <string>예제 불러오기</string>
+     </property>
+     <addaction name="action_e1"/>
+     <addaction name="action_e2"/>
+     <addaction name="action_e3"/>
+    </widget>
+    <addaction name="exampleMenu"/>
+    <addaction name="action_load"/>
+    <addaction name="action_save"/>
+    <addaction name="separator"/>
+    <addaction name="action_add"/>
+    <addaction name="action_link"/>
+    <addaction name="separator"/>
+    <addaction name="action_reset"/>
+    <addaction name="action_end"/>
+   </widget>
+   <widget class="QMenu" name="helpMenu">
+    <property name="title">
+     <string>도움말(&amp;H)</string>
+    </property>
+    <addaction name="action_help"/>
+    <addaction name="action_th"/>
+   </widget>
+   <addaction name="fileMenu"/>
+   <addaction name="helpMenu"/>
+  </widget>
+  <action name="action_e1">
+   <property name="text">
+    <string>3 node 예제</string>
+   </property>
+  </action>
+  <action name="action_e2">
+   <property name="text">
+    <string>4 node 예제</string>
+   </property>
+  </action>
+  <action name="action_e3">
+   <property name="text">
+    <string>7 node 예제 (교재 그림 8.1)</string>
+   </property>
+  </action>
+  <action name="action_load">
+   <property name="text">
+    <string>파일 불러오기...</string>
+   </property>
+  </action>
+  <action name="action_save">
+   <property name="text">
+    <string>파일 저장하기...</string>
+   </property>
+  </action>
+  <action name="action_add">
+   <property name="text">
+    <string>직접 구상 - 노드 추가</string>
+   </property>
+  </action>
+  <action name="action_link">
+   <property name="text">
+    <string>직접 구상 - 링크 연결</string>
+   </property>
+  </action>
+  <action name="action_reset">
+   <property name="text">
+    <string>초기화</string>
+   </property>
+  </action>
+  <action name="action_end">
+   <property name="text">
+    <string>종료</string>
+   </property>
+  </action>
+  <action name="action_help">
+   <property name="text">
+    <string>학습 시나리오 가이드 (PDF)</string>
+   </property>
+  </action>
+  <action name="action_th">
+   <property name="text">
+    <string>거리 벡터 이론 설명 (PDF)</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
